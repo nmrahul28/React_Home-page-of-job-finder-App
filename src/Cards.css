@@ -1,0 +1,38 @@
+.column {
+    float: left;
+    width: auto;
+    padding: 0 10px;
+  }
+  
+  .row {
+      margin-top: 30px;
+    }
+  
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  
+  .card {
+    margin-bottom: 45px;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+  }
+
+  .learn_btn{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+  }
+  .learn_btn:hover{
+    box-shadow: 0 8px 16px 0 rgba(7, 17, 77, 0.2);
+  }
