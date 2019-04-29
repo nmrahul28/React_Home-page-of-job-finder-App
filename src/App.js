@@ -1,31 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
-import HeaderComponent from './Header_Component';
-import Footer from './Footer.js';
-import jobs from './Jobs_collection';
-import Cards from './Cards';
-import Filter from './Filters';
+import Signup from './GeneralComponents/signup.js';
+import Login from './GeneralComponents/login.js';
+import Home from './Home.js';
+import { BrowserRouter, Route} from "react-router-dom";
 class App extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       new_data:jobs
-    }
-  }
-  filtered_data=(data)=>{
-    this.setState({
-      new_data:data
-    });
-  }
-  
   render() {
-    return (<div>
-      <HeaderComponent />
-      <Filter filtered={this.filtered_data} data_filter={jobs}></Filter>
-      <Cards content={this.state.new_data}></Cards>
-      <Footer></Footer>
-    </div>
+    return (<BrowserRouter>
+      <Route exact path='/' component={Home} />
+      <Route path='/login' component={Login} />
+      <Route path='/signup' component={Signup} />
+    </BrowserRouter>
     );
   }
 }
