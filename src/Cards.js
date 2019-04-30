@@ -1,5 +1,6 @@
 import React from 'react';
-import './Cards.css'
+import './Cards.css';
+import logo from './download.png';
 class Cards extends React.Component {
     render() {
         const job_data = this.props.content;
@@ -7,11 +8,10 @@ class Cards extends React.Component {
             return (<div key={index} className="row">
                 <div className="column">
                     <div className="card">
-                        <img src={element.image} alt="image12"></img>
+                        <img src={logo} alt="image12"></img>
                         <h3>{element.job_designation}</h3>
-                        <b><p>[ job_id= {element.job_id}]</p></b>
                         <p>{element.company_name}</p>
-                        <p>{element.salary}</p>
+                        <p>Rs. {element.salary} per Month</p>
                         <button type="button" className="learn_btn">Apply</button>
                     </div>
                 </div>

@@ -3,8 +3,6 @@ import Input from './Input.js'
 import './signup.css';
 import Button from './Button.js';
 import FormErrors from './formerrors.js';
-import HeaderComponent from '../Header_Component.js';
-import { Redirect } from "react-router-dom";
 import axios from 'axios';
 class Signup extends React.Component {
   constructor(props) {

@@ -14,7 +14,6 @@ class Filter extends React.Component {
     }
 
     handleSubmit = (event) => {
-        console.log('A name was submitted: ' + this.state);
         event.preventDefault();
         const job_data = this.props.data_filter;
         if (this.state.location==='' && this.state.designation==='' && this.state.company==='') {

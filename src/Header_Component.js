@@ -29,6 +29,7 @@ class HeaderComponent extends React.Component {
             signup_tag:true
         });
         localStorage.removeItem('Currentuser');
+        localStorage.removeItem('Currentrole');
 
     }
     render() {
@@ -49,6 +50,7 @@ class HeaderComponent extends React.Component {
                 {this.state.signin_tag && <Link to="/login">Login</Link>}
                 {this.state.signup_tag && <Link to="/signup">Signup</Link>}
                 {!this.state.signup_tag && <Link to='/' onClick={this.logout}>Logout</Link>}
+                {!this.state.signup_tag && localStorage.getItem('Currentrole')==='3' && <Link to='/add_job'>Add Job</Link>}
             </div>
         </div>
         {!this.state.signup_tag && <h2 style={{textAlign:'center'}}>Welcome {data}</h2>}

@@ -68,8 +68,13 @@ class Login extends React.Component {
             else{
                 alert('Login Success');
                 localStorage.setItem('Currentuser', JSON.stringify(res.data.name));
+                localStorage.setItem('Currentrole', JSON.stringify(res.data.role));
                 localStorage.setItem('isloggedIn', true);
-                this.props.history.push('/')
+                this.props.history.push({pathname:'/',state:{
+                    company_name:res.data.name
+
+                }});
+                console.log(res.data.name);
             }
             })
             .catch((err) => {
