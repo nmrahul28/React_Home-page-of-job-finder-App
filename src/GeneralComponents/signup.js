@@ -28,6 +28,9 @@ class Signup extends React.Component {
 
 
   }
+  componentDidMount(){
+    localStorage.getItem('isloggedIn')==='true' && this.props.history.push('/');
+}
 
   handleChange = (event) => {
     const value = event.target.value;
@@ -98,12 +101,8 @@ class Signup extends React.Component {
     return this.props.history.push('/login');
   }
   render() {
-    // if (this.state.redirect) {
-    //   return <Redirect to='/login' />
-    // }
     return (
       <div className='form_style'>
-        <HeaderComponent />
         <form onSubmit={this.handleSubmit}>
           <h1>Signup Form</h1>
           <div className="default">

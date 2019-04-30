@@ -19,6 +19,9 @@ class Login extends React.Component {
 
 
     }
+    componentDidMount(){
+        localStorage.getItem('isloggedIn')==='true' && this.props.history.push('/');
+    }
 
     handleChange = (event) => {
         const value = event.target.value;
@@ -55,21 +58,18 @@ class Login extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const { login_email, login_password } = this.state;
-        axios.get('http://localhost:8081/user/readone', {
-            params: {
+        axios.post('http://localhost:8081/user/readone', {
                 email: login_email,
                 password: login_password
-            }
-        }).then((res) => {
+            }).then((res) => {
             if(res.data===''){
                 alert('Login fail')
             }
             else{
                 alert('Login Success');
-                console.log(res.data);
-                this.props.history.push('/')
                 localStorage.setItem('Currentuser', JSON.stringify(res.data.name));
                 localStorage.setItem('isloggedIn', true);
+                this.props.history.push('/')
             }
             })
             .catch((err) => {
@@ -79,7 +79,6 @@ class Login extends React.Component {
     render() {
         return (
             <div className='form_style'>
-                <HeaderComponent />
                 <form onSubmit={this.handleSubmit}>
                     <h1>Login Form</h1>
                     <div className="default">
