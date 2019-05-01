@@ -3,7 +3,6 @@ import Input from './Input.js'
 import './signup.css';
 import Button from './Button.js';
 import FormErrors from './formerrors.js';
-import HeaderComponent from '../Header_Component.js';
 import axios from 'axios';
 class Login extends React.Component {
     constructor(props) {
@@ -86,14 +85,14 @@ class Login extends React.Component {
             <div className='form_style'>
                 <form onSubmit={this.handleSubmit}>
                     <h1>Login Form</h1>
-                    <div className="default">
+                    <div>
                         <FormErrors formErrors={this.state.formErrors} />
                     </div>
                     <label>Email</label>
-                    <Input input_type={'email'} input_name={'login_email'} input_placeholder={'Email'} input_value={this.state.login_email} input_change={this.handleChange}></Input>
+                    <Input input_class={'form-control input_style'} input_type={'email'} input_name={'login_email'} input_placeholder={'Email'} input_value={this.state.login_email} input_change={this.handleChange}></Input>
                     <label>Password</label>
-                    <Input input_type={'password'} input_name={'login_password'} input_placeholder={'Password'} input_value={this.state.login_password} input_change={this.handleChange}></Input><br></br>
-                    <Button btn_type={'submit'} btn_name={'Submit'}></Button>
+                    <Input input_class={'form-control input_style'} input_type={'password'} input_name={'login_password'} input_placeholder={'Password'} input_value={this.state.login_password} input_change={this.handleChange}></Input><br></br>
+                    <Button input_className={"button2"} btn_type={'submit'} btn_name={'Submit'}></Button>
                 </form>
             </div>
         )

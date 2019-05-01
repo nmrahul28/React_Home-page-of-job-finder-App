@@ -3,6 +3,7 @@ import Input from './Input';
 import Button from './Button';
 import FormErrors from './formerrors';
 import './jobform.css';
+import './signup.css';
 import axios from 'axios';
 class Jobform extends React.Component {
     constructor(props) {
@@ -93,13 +94,13 @@ class Jobform extends React.Component {
                         <FormErrors formErrors={this.state.formErrors} />
                     </div>
                     <label>Job Designation</label>
-                    <Input input_type={'text'} input_name={'job_designation'} input_placeholder={'Designation'} input_value={this.state.job_designation} input_change={this.handleChange}></Input>
+                    <Input input_class={'form-control input_style'} input_type={'text'} input_name={'job_designation'} input_placeholder={'Designation'} input_value={this.state.job_designation} input_change={this.handleChange}></Input>
                     <label>Salary</label>
-                    <Input input_type={'text'} input_name={'salary'} input_placeholder={'Salary'} input_value={this.state.salary} input_change={this.handleChange}></Input>
+                    <Input input_class={'form-control input_style'} input_type={'text'} input_name={'salary'} input_placeholder={'Salary'} input_value={this.state.salary} input_change={this.handleChange}></Input>
                     <label>Location</label>
-                    <Input input_type={'text'} input_name={'job_location'} input_placeholder={'Location'} input_value={this.state.job_location} input_change={this.handleChange}></Input>
+                    <Input input_class={'form-control input_style'} input_type={'text'} input_name={'job_location'} input_placeholder={'Location'} input_value={this.state.job_location} input_change={this.handleChange}></Input>
                     <br></br>
-                    <Button btn_type={'submit'} btn_name={'Submit'}></Button>
+                    <Button input_className={"button2"} btn_type={'submit'} btn_name={'Submit'}></Button>
                 </form>
             </div>
         )

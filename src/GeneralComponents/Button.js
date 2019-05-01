@@ -9,7 +9,7 @@ class Button extends React.Component {
     }
     render() {
         return (
-            <button disabled={this.props.btn_disable} type={this.props.btn_type}>{this.props.btn_name}</button>
+            <button className={this.props.input_className} disabled={this.props.btn_disable} type={this.props.btn_type}>{this.props.btn_name}</button>
         );
     }
 }

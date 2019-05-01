@@ -9,7 +9,7 @@ class input extends React.Component {
   }
   render() {
     return (<div className="form-group">
-      <input className="form-control" type={this.props.input_type} name={this.props.input_name} value={this.props.input_value} placeholder={this.props.input_placeholder} onChange={this.props.input_change}></input>
+      <input className={ this.props.input_class} type={this.props.input_type} name={this.props.input_name} value={this.props.input_value} placeholder={this.props.input_placeholder} onChange={this.props.input_change}></input>
     </div>);
   }
 

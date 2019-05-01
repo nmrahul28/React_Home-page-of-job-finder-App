@@ -48,10 +48,10 @@ class Filter extends React.Component {
     render() {
         return (
             <form className="divstyle" onSubmit={this.handleSubmit}>
-                <input type="text" placeholder="Location" name="location" value={this.state.location} onChange={this.handleChange}></input>&ensp;&ensp;
-                <input type="text" placeholder="Designation" name="designation" value={this.state.designation} onChange={this.handleChange}></input>&ensp;&ensp;
-                <input type="text" placeholder="Company" name="company" value={this.state.company} onChange={this.handleChange}></input>&ensp;&ensp;
-                <button type="submit" value="Submit">Search</button>
+                <input className="input_style" type="text" placeholder="Location" name="location" value={this.state.location} onChange={this.handleChange}></input>&ensp;&ensp;
+                <input className="input_style" type="text" placeholder="Designation" name="designation" value={this.state.designation} onChange={this.handleChange}></input>&ensp;&ensp;
+                <input className="input_style" type="text" placeholder="Company" name="company" value={this.state.company} onChange={this.handleChange}></input>&ensp;&ensp;
+                <button className="button2" type="submit" value="Submit">Search</button>
             </form>
         )
     }
