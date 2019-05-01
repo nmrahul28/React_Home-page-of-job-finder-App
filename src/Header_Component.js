@@ -30,6 +30,9 @@ class HeaderComponent extends React.Component {
         });
         localStorage.removeItem('Currentuser');
         localStorage.removeItem('Currentrole');
+        this.props.history.push({pathname:'/', state:{
+            falg:false
+        }})
 
     }
     render() {
@@ -49,7 +52,7 @@ class HeaderComponent extends React.Component {
             <div className="header-right">
                 {this.state.signin_tag && <Link to="/login">Login</Link>}
                 {this.state.signup_tag && <Link to="/signup">Signup</Link>}
-                {!this.state.signup_tag && <Link to='/' onClick={this.logout}>Logout</Link>}
+                {!this.state.signup_tag && <Link onClick={this.logout}>Logout</Link>}
                 {!this.state.signup_tag && localStorage.getItem('Currentrole')==='3' && <Link to='/add_job'>Add Job</Link>}
             </div>
         </div>

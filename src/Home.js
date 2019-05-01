@@ -46,6 +46,21 @@ class Home extends React.Component {
       new_data: data
     });
   }
+  componentWillReceiveProps(nextProps) {
+
+    axios.get('http://localhost:8081/jobs/read')
+      .then((res) => {
+        this.setState({
+          new_data: res.data,
+          all_data: res.data
+        })
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
   render() {
     return (
       <div>

@@ -1,7 +1,7 @@
 .header {
   overflow: hidden;
   background-color:grey;
-  height: auto;
+  width: 100%;
 }
 
 .header a {
@@ -24,4 +24,19 @@
 }
 .header-right {
     float: right;
+  }
+
+  @media screen and (max-width: 700px) {
+    .header a {
+      width: 100%;
+      display: block;
+      padding: 20px;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .header-right {
+      width: 100%;
+      display: block;
+      padding: 20px;
+    }
   }
