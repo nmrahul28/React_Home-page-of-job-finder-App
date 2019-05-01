@@ -12,7 +12,8 @@ class Cards extends React.Component {
                         <h3>{element.job_designation}</h3>
                         <p>{element.company_name}</p>
                         <p>Rs. {element.salary} per Month</p>
-                        <button type="button" className="learn_btn">Apply</button>
+                        <p>{element.location}</p>
+                        {localStorage.getItem('Currentrole')=='2' || localStorage.getItem('Currentrole')===null && <button type="button" className="learn_btn">Apply</button>}
                     </div>
                 </div>
             </div>);
