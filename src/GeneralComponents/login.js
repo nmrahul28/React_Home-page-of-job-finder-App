@@ -62,7 +62,7 @@ class Login extends React.Component {
                 password: login_password
             }).then((res) => {
             if(res.data===''){
-                alert('Login fail')
+                alert('Login fail \n 1.Make sure you credentials are correct \n 2.make sure you have an account')
             }
             else{
                 alert('Login Success');
@@ -84,7 +84,7 @@ class Login extends React.Component {
         return (
             <div className='form_style'>
                 <form onSubmit={this.handleSubmit}>
-                    <h1>Login Form</h1>
+                    <h1>Login</h1>
                     <div>
                         <FormErrors formErrors={this.state.formErrors} />
                     </div>

@@ -13,7 +13,7 @@ class Cards extends React.Component {
                         <p>{element.company_name}</p>
                         <p>Rs. {element.salary} per Month</p>
                         <p>{element.location}</p>
-                        {localStorage.getItem('Currentrole')=='2' || localStorage.getItem('Currentrole')===null && <button type="button" className="learn_btn">Apply</button>}
+                        {(localStorage.getItem('Currentrole')==='2' || localStorage.getItem('Currentrole')===null) && <button className="button2" type="button">Apply</button>}
                     </div>
                 </div>
             </div>);

@@ -102,7 +102,7 @@ class Signup extends React.Component {
     return (
       <div className='form_style'>
         <form onSubmit={this.handleSubmit}>
-          <h1>Signup Form</h1>
+          <h1>Signup</h1>
           <div className="default">
             <FormErrors formErrors={this.state.formErrors} />
           </div>

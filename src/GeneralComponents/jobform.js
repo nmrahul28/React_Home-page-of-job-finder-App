@@ -59,6 +59,9 @@ class Jobform extends React.Component {
     validateForm() {
         this.setState({ formValid:this.state.jobValid && this.state.salaryValid && this.state.locValid });
     }
+    // componentDidMount(){
+    //     localStorage.getItem('isloggedIn')==='true' && this.props.history.push('/')
+    // }
     handleSubmit = (event) => {
         event.preventDefault();
         const { job_designation, salary, job_location } = this.state;
@@ -84,6 +87,11 @@ class Jobform extends React.Component {
             }).catch((err) => {
                 console.log(err);
             })
+    }
+    componentDidMount(){
+        if(localStorage.getItem('Currentrole')==='2'){
+        localStorage.getItem('isloggedIn')==='true' && this.props.history.push('/');
+        }
     }
     render() {
         return (

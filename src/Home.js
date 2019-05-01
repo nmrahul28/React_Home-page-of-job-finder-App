@@ -26,9 +26,13 @@ class Home extends React.Component {
       })
     }
     else {
+      if(localStorage.getItem('Currentuser')){
+        var company_name=localStorage.getItem('Currentuser');
+        company_name = company_name.replace(/"/g,"");
+    }
       axios.get('http://localhost:8081/jobs', {
         params: {
-          company_name:this.props.history.location.state.company_name
+          company_name:company_name
         }
       }).then((res) => {
         this.setState({
