@@ -4,6 +4,7 @@ import logo from './download.png';
 class Cards extends React.Component {
     render() {
         const job_data = this.props.content;
+        console.log(job_data)
         return job_data.map((element, index) => {
             return (<div key={index} className="row">
                 <div className="column">
