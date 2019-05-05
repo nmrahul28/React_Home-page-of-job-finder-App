@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Signup from './GeneralComponents/signup.js';
-import Login from './GeneralComponents/login.js';
-import Home from './redux/containers/container.js';
-import Jobform from './GeneralComponents/jobform.js';
+import Signup from './redux/containers/user_signup_container.js';
+import Login from './redux/containers/user_container.js';
+import Home from './redux/containers/job_container.js';
+import Jobform from './redux/containers/add_job_container.js';
+import Cards from './redux/containers/update_job_container.js';
 import { BrowserRouter, Route} from "react-router-dom";
 class App extends Component {
   render() {

@@ -1,6 +1,6 @@
-const userReducer = (state = {data:[]}, action)=> {
+const JobUpdate = (state = {data:[]}, action)=> {
     switch (action.type) {
-        case 'GET_DATA_FULFILLED':{
+        case 'GET_ID':{
             return state = {
                 ...state,
                 data: action.payload
@@ -11,4 +11,4 @@ const userReducer = (state = {data:[]}, action)=> {
 
     }
 }
-export default userReducer;
+export default JobUpdate;

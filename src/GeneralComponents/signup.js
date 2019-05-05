@@ -82,12 +82,8 @@ class Signup extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { name, email, password, mobile, role } = this.state;
-    axios.post('http://localhost:8081/users/post', { name, email, password, mobile, role })
-      .then((res) => {
-        alert('Signup Succcessful');
-      }).catch((err) => {
-        console.log(err);
-      });
+    this.props.getsignup({ name, email, password, mobile, role })
+    alert('Signup Successsful');
     this.setState({
       redirect: true,
       name: '',

@@ -13,11 +13,12 @@ class Jobform extends React.Component {
             job_designation: '',
             job_location: '',
             salary: '',
+            update:[],
             formErrors: { job_designation: '', job_location: '', salary: '' },
             companyValid: false,
             jobValid: false,
             locValid: false,
-            salaryValid:false
+            salaryValid: false
 
         }
     }
@@ -32,7 +33,7 @@ class Jobform extends React.Component {
         let fieldValidationErrors = this.state.formErrors;
         let jobValid = this.state.jobValid;
         let locValid = this.state.locValid;
-        let salaryValid=this.state.salaryValid;
+        let salaryValid = this.state.salaryValid;
         switch (fieldName) {
             case 'job_designation':
                 jobValid = value.match(/^[a-zA-Z ]*$/);;
@@ -53,44 +54,39 @@ class Jobform extends React.Component {
             formErrors: fieldValidationErrors,
             jobValid: jobValid,
             locValid: locValid,
-            salaryValid:salaryValid
+            salaryValid: salaryValid
         }, this.validateForm);
     }
     validateForm() {
-        this.setState({ formValid:this.state.jobValid && this.state.salaryValid && this.state.locValid });
+        this.setState({ formValid: this.state.jobValid && this.state.salaryValid && this.state.locValid });
     }
-    // componentDidMount(){
-    //     localStorage.getItem('isloggedIn')==='true' && this.props.history.push('/')
-    // }
     handleSubmit = (event) => {
         event.preventDefault();
         const { job_designation, salary, job_location } = this.state;
-        if(localStorage.getItem('Currentuser')){
-            var company_name=localStorage.getItem('Currentuser');
-            company_name = company_name.replace(/"/g,"");
+        if (localStorage.getItem('Currentuser')) {
+            var company_name = localStorage.getItem('Currentuser');
+            company_name = company_name.replace(/"/g, "");
         }
-
-        axios.post('http://localhost:8081/jobs/post', { job_designation, company_name, salary, job_location })
-            .then((res) => {
-                console.log(res.data);
-                alert('Job Added');
-                this.setState({
-                    job_location: '',
-                    salary: '',
-                    job_designation: ''
-                });
-                this.props.history.push({
-                    pathname: '/', state: {
-                        company_name: company_name
-                    }
-                });
-            }).catch((err) => {
-                console.log(err);
-            })
+        if(localStorage.getItem('operation')===null){
+        this.props.addjob({ job_designation, company_name, salary, job_location })
+        this.setState({
+            job_location: '',
+            salary: '',
+            job_designation: ''
+        });
+        alert('Job Added');
+        this.props.history.push({
+            pathname: '/', state: {
+                falg: false
+            }
+        });
     }
-    componentDidMount(){
-        if(localStorage.getItem('Currentrole')==='2'){
-        localStorage.getItem('isloggedIn')==='true' && this.props.history.push('/');
+    else if(localStorage.getItem('operation')==='updated'){
+    }
+}
+    componentDidMount() {
+        if (localStorage.getItem('Currentrole') === '2') {
+            localStorage.getItem('isloggedIn') === 'true' && this.props.history.push('/');
         }
     }
     render() {

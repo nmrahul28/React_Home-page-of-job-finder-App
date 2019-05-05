@@ -1,6 +1,6 @@
 import  {connect} from  "react-redux";
 import Home from '../../Home.js';
-import {getJobSkills} from '../actions/action.js';
+import {getjob_user, getjob_company} from '../actions/job_action.js';
 
 const mapStateToProps = (state) =>{
     console.log(state.jobs)
@@ -12,7 +12,9 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return {
         dispatch,
-        getJobSkills: () => dispatch(getJobSkills()),
+        getjob_user: (company) => dispatch(getjob_user(company)),
+        // getjob_company:()=>dispatch(getjob_company())
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

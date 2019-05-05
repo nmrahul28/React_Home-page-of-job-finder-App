@@ -3,13 +3,13 @@ import Input from './Input.js'
 import './signup.css';
 import Button from './Button.js';
 import FormErrors from './formerrors.js';
-import axios from 'axios';
 class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             login_email: '',
             login_password: '',
+            user_data:{},
             formErrors: { login_email: '', login_password: '' },
             emailValid: false,
             passwordValid: false,
@@ -18,8 +18,8 @@ class Login extends React.Component {
 
 
     }
-    componentDidMount(){
-        localStorage.getItem('isloggedIn')==='true' && this.props.history.push('/');
+    componentDidMount() {
+        localStorage.getItem('isloggedIn') === 'true' && this.props.history.push('/');
     }
 
     handleChange = (event) => {
@@ -53,33 +53,31 @@ class Login extends React.Component {
     }
     validateForm() {
         this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
+        const { login_email, login_password } = this.state;
+        this.props.getlogin(login_email, login_password);
+    }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            user_data:nextProps.user
+                },()=>{
+            console.log(this.state.user_data);
+        })
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        const { login_email, login_password } = this.state;
-        axios.post('http://localhost:8081/user/readone', {
-                email: login_email,
-                password: login_password
-            }).then((res) => {
-            if(res.data===''){
-                alert('Login fail \n 1.Make sure you credentials are correct \n 2.make sure you have an account')
-            }
-            else{
-                alert('Login Success');
-                localStorage.setItem('Currentuser', JSON.stringify(res.data.name));
-                localStorage.setItem('Currentrole', JSON.stringify(res.data.role));
-                localStorage.setItem('isloggedIn', true);
-                this.props.history.push({pathname:'/',state:{
-                    company_name:res.data.name
-
-                }});
-                console.log(res.data.name);
-            }
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
+        console.log(this.state.user_data);
+        if (!Object.keys(this.state.user_data).length) {
+            alert('Login fail \n 1.Make sure you credentials are correct \n 2.make sure you have an account')
+        }
+        else {
+            alert('Login Success');
+            localStorage.setItem('Currentuser', JSON.stringify(this.state.user_data.name));
+            localStorage.setItem('Currentrole', JSON.stringify(this.state.user_data.role));
+            localStorage.setItem('Currentid',JSON.stringify(this.state.user_data._id));
+            localStorage.setItem('isloggedIn', true);
+            this.props.history.push({pathname:'/'});
+        }
+}
     render() {
         return (
             <div className='form_style'>

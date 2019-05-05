@@ -30,6 +30,7 @@ class HeaderComponent extends React.Component {
         });
         localStorage.removeItem('Currentuser');
         localStorage.removeItem('Currentrole');
+        localStorage.removeItem('Currentid');
         this.props.history.push({state:{
             falg:false
         }})
