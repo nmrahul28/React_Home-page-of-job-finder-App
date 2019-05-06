@@ -1,11 +1,10 @@
-import React from 'react';
-import Input from './Input';
+import React, { Component } from 'react'
+import Input from './Input.js';
 import Button from './Button';
 import FormErrors from './formerrors';
 import './jobform.css';
 import './signup.css';
-import axios from 'axios';
-class Jobform extends React.Component {
+export class updateform extends Component {
     constructor(props) {
         super(props)
 
@@ -60,39 +59,32 @@ class Jobform extends React.Component {
     validateForm() {
         this.setState({ formValid: this.state.jobValid && this.state.salaryValid && this.state.locValid });
     }
-    handleSubmit = (event) => {
+    componentWillMount(){
+        let job_object=JSON.parse(this.props.match.params.job);
+        console.log(job_object)
+        this.setState({
+            job_designation:job_object.job_designation,
+            salary:job_object.salary,
+            job_location:job_object.location
+        })
+    }
+    handleSubmit=(event)=>{
         event.preventDefault();
-        const { job_designation, salary, job_location } = this.state;
-        if (localStorage.getItem('Currentuser')) {
-            var company_name = localStorage.getItem('Currentuser');
-            company_name = company_name.replace(/"/g, "");
+        const {job_designation, job_location, salary}=this.state;
+        console.log(this.state);
+        if (localStorage.getItem('job_id')) {
+            var id = localStorage.getItem('job_id');
+            id = id.replace(/"/g, "");
         }
-        if (localStorage.getItem('operation') === null) {
-            this.props.addjob({ job_designation, company_name, salary, job_location })
-            this.setState({
-                job_location: '',
-                salary: '',
-                job_designation: ''
-            });
-            alert('Job Added');
-            this.props.history.push({
-                pathname: '/', state: {
-                    falg: false
-                }
-            });
-        }
+        this.props.update_form({id, job_designation, job_location, salary});
+        alert('update successful');
+        this.props.history.push('/');
     }
-    componentDidMount() {
-        if (localStorage.getItem('Currentrole') === '2') {
-            localStorage.getItem('isloggedIn') === 'true' && this.props.history.push('/');
-        }
-
-    }
-    render() {
-        return (
-            <div className='form_style'>
+  render() {
+    return (
+        <div className='form_style'>
                 <form onSubmit={this.handleSubmit}>
-                    <h1>Add a job</h1>
+                    <h1>Update job</h1>
                     <div className="default">
                         <FormErrors formErrors={this.state.formErrors} />
                     </div>
@@ -103,11 +95,11 @@ class Jobform extends React.Component {
                     <label>Location</label>
                     <Input input_class={'form-control input_style'} input_type={'text'} input_name={'job_location'} input_placeholder={'Location'} input_value={this.state.job_location} input_change={this.handleChange}></Input>
                     <br></br>
-                    <Button input_className={"button2"} btn_type={'submit'} btn_name={'Submit'}></Button>&ensp;&ensp;
+                    <Button input_className={"button2"} btn_type={'submit'} btn_name={'Update'}></Button>&ensp;&ensp;
                 </form>
             </div>
-        )
-    }
-
+    )
+  }
 }
-export default Jobform;
+
+export default updateform

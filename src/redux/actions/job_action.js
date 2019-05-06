@@ -17,7 +17,7 @@ export const addjobdata =(data) => {
 
 export const get_details =(data) => {
     return {
-        type: "GET_ID",
+        type: "UPDATE",
         payload: data
     }
 }
@@ -67,13 +67,10 @@ export const addjob = (data) => {
     }
 }
 
-export const getjob_id=(btn_id)=>{
+export const update_form=(data)=>{
     return dispatch=>{
-          axios.get('http://localhost:8081/jobs/find_id', {
-            params: {
-              id: btn_id
-            }
-        }).then((res)=>{
+          axios.put('http://localhost:8081/jobs/put',data)
+          .then((res)=>{
             dispatch(get_details(res.data))
         }).catch((err)=>{
             return err;

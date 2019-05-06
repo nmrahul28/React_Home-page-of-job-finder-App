@@ -13,7 +13,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return {
         dispatch,
-        getjob_id:(btn_id)=>dispatch(getjob_id(btn_id))
+        // getjob_id:(btn_id)=>dispatch(getjob_id(btn_id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cards);
