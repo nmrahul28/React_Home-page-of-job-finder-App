@@ -2,7 +2,8 @@ import React from 'react';
 import HeaderComponent from './Header_Component';
 import Footer from './Footer.js';
 import './App.css';
-import Cards from './redux/containers/update_job_container.js';
+// import Cards from './redux/containers/update_job_container.js';
+import Cards from './redux/containers/apply_container.js';
 import Filter from './Filters';
 class Home extends React.Component {
   constructor(props) {
@@ -19,28 +20,28 @@ class Home extends React.Component {
       all_data: nextProps.jobs
     })
   }
-componentWillMount() {
-  if (localStorage.getItem('Currentrole') === '2' || localStorage.getItem('Currentrole') === null) {
-    this.props.getjob_user();
-    this.setState({
-      new_data: this.props.jobs,
-      all_data: this.props.jobs
-    })
-    console.log(this.state.new_data);
-  }
-  else {
-    if (localStorage.getItem('Currentuser')) {
-      var company_name = localStorage.getItem('Currentuser');
-      company_name = company_name.replace(/"/g, "");
+  componentWillMount() {
+    if (localStorage.getItem('Currentrole') === '2' || localStorage.getItem('Currentrole') === null) {
+      this.props.getjob_user();
+      this.setState({
+        new_data: this.props.jobs,
+        all_data: this.props.jobs
+      })
+      console.log(this.state.new_data);
     }
-    this.props.getjob_user(company_name);
-    this.setState({
-      new_data: this.props.jobs,
-      all_data: this.props.jobs
-    })
-  }
+    else {
+      if (localStorage.getItem('Currentuser')) {
+        var company_name = localStorage.getItem('Currentuser');
+        company_name = company_name.replace(/"/g, "");
+      }
+      this.props.getjob_user(company_name);
+      this.setState({
+        new_data: this.props.jobs,
+        all_data: this.props.jobs
+      })
+    }
 
-}
+  }
 
   filtered_data = (data) => {
     this.setState({

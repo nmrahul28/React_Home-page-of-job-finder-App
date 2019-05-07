@@ -17,13 +17,52 @@ class Cards extends React.Component {
             location: '',
             job_id: ''
         }
-    }
+}
     handleClick = (ele, e) => {
         console.log(ele);
         localStorage.setItem('job_id', ele._id);
         this.props.history.push(`/update/${JSON.stringify(ele)}`);
     }
+    componentWillMount(){
+        if(localStorage.getItem('Currentid')){
+            let user_id=localStorage.getItem('Currentid');
+            user_id = user_id.replace(/"/g, "");
+            this.props.get_applyjob(user_id);
+            this.props.apply;
+        }
+        this.setState({
+            apply_data:this.props.apply.data
+        })
+    }
+    apply=(ele, e)=>{
+        var company_name;
+        if(localStorage.getItem('isloggedIn')==='false'){
+            this.props.history.push('/login');
+        }
+        else{
+            let user_id=localStorage.getItem('Currentid');
+            user_id = user_id.replace(/"/g, "");
+            let user_name=localStorage.getItem('Currentuser');
+            user_name=user_name.replace(/"/g,"");
+            let job_id=ele._id;
+            let job_designation=ele.job_designation;
+            let salary=ele.salary;
+            company_name=ele.company_name;
+            let location=ele.location;
+            this.props.apply_job({user_id,user_name, job_id, job_designation, salary, company_name, location});
+            alert('Applied');
+
+        }
+    }
+    componentWillReceiveProps(nextProps){
+        console.log('hiii', nextProps);
+        this.setState({
+            apply_data:nextProps.apply.data
+        })
+
+    }
     render() {
+        console.log(this.state.apply_data)
         const job_data = this.props.content;
         console.log(job_data)
         return job_data.map((element, index) => {
@@ -35,12 +74,13 @@ class Cards extends React.Component {
                         <p>{element.company_name}</p>
                         <p>Rs. {element.salary} per Month</p>
                         <p>{element.location}</p>
-                        {(localStorage.getItem('Currentrole') === '2' || localStorage.getItem('Currentrole') === null) && <button id={element._id}  className="button2" type="button">Apply</button>}
+                        {(localStorage.getItem('Currentrole') === '2' || localStorage.getItem('Currentrole') === null) && <button id={element._id} onClick={(e) => this.apply(element, e)} className="button2" type="button">Apply</button>}
                         {(localStorage.getItem('Currentrole') === '3') && <button id={element._id} onClick={(e) => this.handleClick(element, e)} className="button2" type="button">Edit</button>}
                     </div>
                 </div>
             </div>);
         });
+
     }
 }
 export default withRouter(Cards);

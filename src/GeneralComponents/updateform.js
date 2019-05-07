@@ -77,6 +77,9 @@ export class updateform extends Component {
             id = id.replace(/"/g, "");
         }
         this.props.update_form({id, job_designation, job_location, salary});
+        // var company = localStorage.getItem('Currentuser');
+        // company = company.replace(/"/g, "");
+        // this.props.getjob_user(company)
         alert('update successful');
         this.props.history.push('/');
     }

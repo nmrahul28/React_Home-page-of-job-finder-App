@@ -67,7 +67,7 @@ class Jobform extends React.Component {
             var company_name = localStorage.getItem('Currentuser');
             company_name = company_name.replace(/"/g, "");
         }
-        if (localStorage.getItem('operation') === null) {
+        if (job_designation && salary && job_location) {
             this.props.addjob({ job_designation, company_name, salary, job_location })
             this.setState({
                 job_location: '',
@@ -80,6 +80,9 @@ class Jobform extends React.Component {
                     falg: false
                 }
             });
+        }
+        else{
+            alert('Details needed');
         }
     }
     componentDidMount() {
