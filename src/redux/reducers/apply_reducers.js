@@ -17,6 +17,11 @@ const ApplyReducer = (state = {data:[]}, action)=> {
                 data:action.payload
             };
         }
+        case 'UPDATE_APPLY':{
+            return state={
+                ...state
+            };
+        }
         default:
             return state;
 

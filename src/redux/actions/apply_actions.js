@@ -73,3 +73,33 @@ export const apply_job = (data) => {
     }
 }
 
+
+export const get_update = (data) => {
+    return {
+        type: "UPDATE_APPLY",
+        payload: data
+    }
+}
+
+export const update_apply = (data, company_name) => {
+    return dispatch => {
+        axios.put('http://localhost:8081/apply/put', data)
+            .then((res) => {
+                if (res.data.errors) {
+                    window.alert(JSON.parse(res.data.message));
+                }
+                else {
+                    let pr = new Promise((resolve, reject) => {
+                        dispatch(get_update(res.data));
+                        resolve();
+                    })
+                    pr.then(() => {
+                        dispatch( get_applyjob_company(company_name));
+                    })
+                }
+            }).catch((err) => {
+                return err;
+            })
+    }
+}
+
