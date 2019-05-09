@@ -5,7 +5,7 @@ import {update_form} from '../actions/job_action.js';
 const mapDispatchToProps = (dispatch) =>{
     return {
         dispatch,
-        update_form:(update_data)=>dispatch(update_form(update_data)),
+        update_form:(update_data, company)=>dispatch(update_form(update_data, company)),
         // getjob_user:(company)=>dispatch(getjob_user(company))
     }
 }

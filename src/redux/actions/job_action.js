@@ -57,11 +57,18 @@ export const addjob = (data) => {
     return dispatch => {
         axios.post('http://localhost:8081/jobs/post', data)
             .then((res) => {
-                if(res.data.errors){
-                    window.alert(JSON.stringify(res.data.message));
+                if (res.data.errors) {
+                    window.alert(JSON.parse(res.data.message));
                 }
-                console.log(res.data);
-                dispatch(addjobdata(res.data));
+                else {
+                    let pr = new Promise((resolve, reject) => {
+                        dispatch(addjobdata(res.data));
+                        resolve();
+                    })
+                    pr.then(() => {
+                        dispatch(getjob_user(data.company_name));
+                    })
+                }
             }).catch((err) => {
                 return err;
             })
@@ -69,19 +76,22 @@ export const addjob = (data) => {
     }
 }
 
-export const update_form = (data) => {
+export const update_form = (data, company_name) => {
     return dispatch => {
         axios.put('http://localhost:8081/jobs/put', data)
             .then((res) => {
-                if(res.data.errors){
+                if (res.data.errors) {
                     window.alert(JSON.parse(res.data.message));
                 }
-                // return new promise((reslove, reject)=>{
-                    dispatch(get_details(res.data));
-                    // reslove();
-                // }).then(()=>{
-                //     dispatch(getjob_user(company));
-                // }) 
+                else {
+                    let pr = new Promise((resolve, reject) => {
+                        dispatch(get_details(res.data));
+                        resolve();
+                    })
+                    pr.then(() => {
+                        dispatch(getjob_user(company_name));
+                    })
+                }
             }).catch((err) => {
                 return err;
             })

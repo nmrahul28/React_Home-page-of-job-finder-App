@@ -2,8 +2,7 @@ import React from 'react';
 import HeaderComponent from './Header_Component';
 import Footer from './Footer.js';
 import './App.css';
-// import Cards from './redux/containers/update_job_container.js';
-import Cards from './redux/containers/apply_container.js';
+import {Card} from './redux/containers/apply_container.js';
 import Filter from './Filters';
 class Home extends React.Component {
   constructor(props) {
@@ -54,7 +53,7 @@ class Home extends React.Component {
       <div>
         <HeaderComponent />
         <Filter filtered={this.filtered_data} data_filter={this.state.all_data}></Filter>
-        <Cards content={this.state.new_data}></Cards>
+        <Card content={this.state.new_data}></Card>
         <Footer></Footer>
       </div>
     )

@@ -11,6 +11,12 @@ const ApplyReducer = (state = {data:[]}, action)=> {
                 data: action.payload
             };
         }
+        case 'GET_APPLY_COMPANY':{
+            return state={
+                ...state,
+                data:action.payload
+            };
+        }
         default:
             return state;
 

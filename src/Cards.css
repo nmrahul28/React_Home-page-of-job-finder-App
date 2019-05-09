@@ -36,3 +36,8 @@
     background-color: #008CBA;
     color: white;
   }
+  .applied_button{
+      background-color: #008CBA; 
+      color: white; 
+      padding: 8px 8px;
+  }

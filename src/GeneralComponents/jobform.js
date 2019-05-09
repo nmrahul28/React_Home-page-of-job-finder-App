@@ -4,7 +4,6 @@ import Button from './Button';
 import FormErrors from './formerrors';
 import './jobform.css';
 import './signup.css';
-import axios from 'axios';
 class Jobform extends React.Component {
     constructor(props) {
         super(props)
@@ -67,7 +66,7 @@ class Jobform extends React.Component {
             var company_name = localStorage.getItem('Currentuser');
             company_name = company_name.replace(/"/g, "");
         }
-        if (job_designation && salary && job_location) {
+        if (job_designation && salary && job_location && company_name) {
             this.props.addjob({ job_designation, company_name, salary, job_location })
             this.setState({
                 job_location: '',

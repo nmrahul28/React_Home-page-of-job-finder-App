@@ -55,6 +55,7 @@ class HeaderComponent extends React.Component {
                     <div className="header-right">
                         {this.state.signin_tag && <Link to="/login">Login</Link>}
                         {this.state.signup_tag && <Link to="/signup">Signup</Link>}
+                        {!this.state.signup_tag && localStorage.getItem('Currentrole') === '3' && <Link to='/show_jobs'>Get Applied</Link>}
                         {!this.state.signup_tag && localStorage.getItem('Currentrole') === '3' && <Link to='/add_job'>Add Job</Link>}
                         {!this.state.signup_tag && <Link to='/' onClick={this.logout}>Logout</Link>}
                     </div>

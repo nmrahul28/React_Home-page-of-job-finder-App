@@ -1,23 +1,8 @@
 import axios from 'axios';
-
 export const getapply =(data) => {
     return {
         type: "APPLY",
         payload: data
-    }
-}
-
-export const apply_job = (data) => {
-
-    return dispatch => {
-        axios.post('http://localhost:8081/apply',data)
-        .then((res) => {
-            console.log(res.data);
-            dispatch(getapply(res.data));
-        }).catch((err) => {
-            return err;
-        })
-
     }
 }
 
@@ -41,3 +26,50 @@ export const get_applyjob = (userid) => {
 
     }
 }
+
+export const getapply_data_company =(data) => {
+    return {
+        type: "GET_APPLY_COMPANY",
+        payload: data
+    }
+}
+
+export const get_applyjob_company = (company) => {
+    var url =`http://localhost:8081/apply/${company}`;
+    return dispatch => {
+        axios.get(url)
+        .then((res) => {
+            console.log(res.data);
+            dispatch(getapply_data_company(res.data));
+        }).catch((err) => {
+            return err;
+        })
+
+    }
+}
+
+export const apply_job = (data) => {
+
+    return dispatch => {
+        axios.post('http://localhost:8081/apply',data)
+        .then((res) => {
+            if(res.data.errors){
+                window.alert(JSON.stringify(res.data.messaage));
+            }
+            else{
+                let pr=new Promise((reslove, reject)=>{
+                    dispatch(getapply(res.data));
+                    reslove();
+                });
+                pr.then(()=>{
+                    dispatch(get_applyjob(data.user_id));
+                    console.log(data.user_id);
+                })
+            }
+        }).catch((err) => {
+            return err;
+        })
+
+    }
+}
+
