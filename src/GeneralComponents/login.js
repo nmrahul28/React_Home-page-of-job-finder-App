@@ -83,9 +83,9 @@ class Login extends React.Component {
             <div className='form_style'>
                 <form onSubmit={this.handleSubmit}>
                     <h1>Login</h1>
-                    <div>
+                    {/* <div>
                         <FormErrors formErrors={this.state.formErrors} />
-                    </div>
+                    </div> */}
                     <label>Email</label>
                     <Input input_class={'form-control input_style'} input_type={'email'} input_name={'login_email'} input_placeholder={'Email'} input_value={this.state.login_email} input_change={this.handleChange}></Input>
                     <label>Password</label>

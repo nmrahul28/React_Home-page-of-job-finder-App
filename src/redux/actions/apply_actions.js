@@ -103,3 +103,24 @@ export const update_apply = (data, company_name) => {
     }
 }
 
+export const getapply_data_userid =(data) => {
+    return {
+        type: "CHECK_APPLY",
+        payload: data
+    }
+}
+
+export const get_applyjob_user = (user_id) => {
+    var url =`http://localhost:8081/apply/find_applies/${user_id}`;
+    return dispatch => {
+        axios.get(url)
+        .then((res) => {
+            console.log(res.data);
+            dispatch(getapply_data_userid(res.data));
+        }).catch((err) => {
+            return err;
+        })
+
+    }
+}
+

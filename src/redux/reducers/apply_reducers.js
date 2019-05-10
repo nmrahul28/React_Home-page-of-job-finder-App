@@ -22,6 +22,12 @@ const ApplyReducer = (state = {data:[]}, action)=> {
                 ...state
             };
         }
+        case 'CHECK_APPLY':{
+            return state={
+                ...state,
+                data:action.payload
+            };
+        }
         default:
             return state;
 

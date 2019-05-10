@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../Cards.css';
 import logo from '../../src/download.png'
-export class Getapplied extends React.Component {
+export class Getapplied extends Component {
     constructor(props) {
         super(props)
 

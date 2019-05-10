@@ -68,15 +68,15 @@ class Cards extends React.Component {
         this.setState({
             apply_data: nextProps.apply.data,
         });
-        console.log('hiii', nextProps); 
+        console.log('hiii', nextProps);
     }
-    
+
     render() {
         console.log(this.state.apply_data)
         const job_data = this.props.content;
         console.log(job_data);
-        var applied_ids=[];
-        this.state.apply_data.map((ele)=>{
+        var applied_ids = [];
+        this.state.apply_data.map((ele) => {
             applied_ids.push(ele.job_id);
         });
         console.log(applied_ids);
@@ -90,12 +90,12 @@ class Cards extends React.Component {
                         <p>{element.company_name}</p>
                         <p>Rs. {element.salary} per Month</p>
                         <p>{element.location}</p>
-                        {(localStorage.getItem('Currentrole') === '2' || localStorage.getItem('Currentrole') === null)? (applied_ids.find((ele)=>{return ele===element._id})?<button onClick={this.applied} className="applied_button" type="button">Applied</button>: <button id={element._id} onClick={(e) => this.apply(element, e)} className="button2" type="button">Apply</button>)   :<button id={element._id} onClick={(e) => this.handleClick(element, e)} className="button2" type="button">Edit</button>}
+                        {(localStorage.getItem('Currentrole') === '2' || localStorage.getItem('Currentrole') === null) ? (applied_ids.find((ele) => { return ele === element._id }) ? <button onClick={this.applied} className="applied_button" type="button">Applied</button> : <button id={element._id} onClick={(e) => this.apply(element, e)} className="button2" type="button">Apply</button>) : <button id={element._id} onClick={(e) => this.handleClick(element, e)} className="button2" type="button">Edit</button>}
                     </div>
                 </div>
             </div>);
         });
-
     }
+
 }
 export default withRouter(Cards);
