@@ -24,6 +24,8 @@ export class Getapplied extends Component {
 
 
     componentWillReceiveProps(nextProps) {
+        console.log(this.state.get_jobs);
+        console.log(nextProps.apply.data);
         console.log('hello', nextProps);
         this.setState({
             get_jobs: nextProps.apply.data,
@@ -78,7 +80,7 @@ export class Getapplied extends Component {
                         {this.state.flag && (this.state.obj_id === element._id) ? (<form onSubmit={(event) => this.handleSubmit(event, element)}>
                             <label>
                                 <select value={this.state.value} onChange={this.handleChange}>
-                                    <option selected value="Pending">Pending</option>
+                                    <option value="Pending">Pending</option>
                                     <option value="Shortlisted">Shortlisted</option>
                                     <option value="Selected">Selected</option>
                                     <option value="Rejected">Rejected</option>
