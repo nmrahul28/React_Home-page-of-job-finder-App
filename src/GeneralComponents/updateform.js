@@ -84,6 +84,7 @@ export class updateform extends Component {
     }
   render() {
     return (
+        <div class="form-style-10">
         <div className='form_style'>
                 <form onSubmit={this.handleSubmit}>
                     <h1>Update job</h1>
@@ -100,7 +101,7 @@ export class updateform extends Component {
                     <Button input_className={"button2"} btn_type={'submit'} btn_name={'Update'}></Button>&ensp;&ensp;
                 </form>
             </div>
-    )
+            </div>)
   }
 }
 

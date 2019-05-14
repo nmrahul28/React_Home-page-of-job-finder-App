@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../Cards.css';
 import logo from '../../src/download.png'
+import HeaderComponent from '../../src/Header_Component.js';
 export class Showapplied extends Component {
     componentWillMount() {
         if (localStorage.getItem('Currentid')) {
@@ -22,7 +23,10 @@ export class Showapplied extends Component {
     }
     render() {
         console.log(this.state.check_applied);
-        return this.state.check_applied.map((element, index) => {
+        return (
+            <div>
+                <HeaderComponent />
+            {this.state.check_applied.map((element, index) => {
             return (<div key={index} className="row">
                 <div className="column">
                     <div className="card">
@@ -38,7 +42,8 @@ export class Showapplied extends Component {
                     </div>
                 </div>
             </div>)
-        })
+        })}
+        </div>)
     }
 }
 

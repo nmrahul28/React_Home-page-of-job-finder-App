@@ -26,9 +26,9 @@ class Signup extends React.Component {
 
 
   }
-  componentDidMount(){
-    localStorage.getItem('isloggedIn')==='true' && this.props.history.push('/');
-}
+  componentDidMount() {
+    localStorage.getItem('isloggedIn') === 'true' && this.props.history.push('/');
+  }
 
   handleChange = (event) => {
     const value = event.target.value;
@@ -96,26 +96,37 @@ class Signup extends React.Component {
   }
   render() {
     return (
-      <div className='form_style'>
-        <form onSubmit={this.handleSubmit}>
-          <h1>Signup</h1>
-          <div>
-            <FormErrors formErrors={this.state.formErrors} />
-          </div>
-          <label>Name</label>
-          <Input input_class={'form-control input_style'} input_type={'text'} input_name={'name'} input_placeholder={'Name'} input_value={this.state.name} input_change={this.handleChange}></Input>
-          <label>Email</label>
-          <Input input_class={'form-control input_style'} input_type={'email'} input_name={'email'} input_placeholder={'Email'} input_value={this.state.email} input_change={this.handleChange}></Input>
-          <label>Mobile</label>
-          <Input input_class={'form-control input_style'} input_type={'tel'} input_name={'mobile'} input_placeholder={'Mobile'} input_value={this.state.mobile} input_change={this.handleChange}></Input>
-          <label>Role</label>
-          <Input input_class={'form-control input_style'} input_type={'text'} input_name={'role'} input_placeholder={'Role'} input_value={this.state.role} input_change={this.handleChange}></Input>
-          <label>Password</label>
-          <Input input_class={'form-control input_style'} input_type={'password'} input_name={'password'} input_placeholder={'Password'} input_value={this.state.password} input_change={this.handleChange}></Input><br></br>
-          <Button input_className={"button2"} btn_disable={!this.state.formValid} btn_type={'submit'} btn_name={'Submit'}></Button>
-        </form>
+      <div class="form-style-10">
+        <div className='form_style'>
+          <form onSubmit={this.handleSubmit}>
+            <h1>Signup</h1>
+            <div>
+              <FormErrors formErrors={this.state.formErrors} />
+            </div>
+            <div class="section"><span>1</span>Name & Email</div>
+            <div class="inner-wrap">
+              <label>Name</label>
+              <Input input_class={'form-control input_style'} input_type={'text'} input_name={'name'} input_placeholder={'Name'} input_value={this.state.name} input_change={this.handleChange}></Input>
+              <label>Email</label>
+              <Input input_class={'form-control input_style'} input_type={'email'} input_name={'email'} input_placeholder={'Email'} input_value={this.state.email} input_change={this.handleChange}></Input>
+            </div>
+            <div class="section"><span>2</span>Mobile & Role</div>
+            <div class="inner-wrap">
+              <label>Mobile</label>
+              <Input input_class={'form-control input_style'} input_type={'text'} input_name={'mobile'} input_placeholder={'Mobile'} input_value={this.state.mobile} input_change={this.handleChange}></Input>
+              <label>Role</label>
+              <Input input_class={'form-control input_style'} input_type={'text'} input_name={'role'} input_placeholder={'Role'} input_value={this.state.role} input_change={this.handleChange}></Input>
+            </div>
+            <div class="section"><span>3</span>Password</div>
+            <div class="inner-wrap">
+              <label>Password</label>
+              <Input input_class={'form-control input_style'} input_type={'password'} input_name={'password'} input_placeholder={'Password'} input_value={this.state.password} input_change={this.handleChange}></Input>
+            </div>
+            <br></br>
+            <Button input_className={"button2"} btn_disable={!this.state.formValid} btn_type={'submit'} btn_name={'Submit'}></Button>
+          </form>
+        </div>
       </div>
-
     )
   }
 }

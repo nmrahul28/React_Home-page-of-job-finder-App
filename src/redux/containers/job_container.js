@@ -12,9 +12,9 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return {
         dispatch,
-        getjob_user: (company) => dispatch(getjob_user(company)),
+        getjob_user: (current_page, company) => dispatch(getjob_user(current_page, company)),
         // getjob_company:()=>dispatch(getjob_company())
 
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export const home= connect(mapStateToProps, mapDispatchToProps)(Home);

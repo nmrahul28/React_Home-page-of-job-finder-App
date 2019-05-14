@@ -73,7 +73,7 @@ class Cards extends React.Component {
 
     render() {
         console.log(this.state.apply_data)
-        const job_data = this.props.content;
+        var job_data = this.props.content;
         console.log(job_data);
         var applied_ids = [];
         this.state.apply_data.map((ele) => {
@@ -82,20 +82,22 @@ class Cards extends React.Component {
         console.log(applied_ids);
         console.log(job_data);
         if (typeof (job_data) !== 'undefined' && job_data.length > 0) {
-            return job_data.map((element, index) => {
-                return (<div key={index} className="row">
-                    <div className="column">
-                        <div className="card">
-                            <img src={logo} alt="image12"></img>
-                            <h3>{element.job_designation}</h3>
-                            <p>{element.company_name}</p>
-                            <p>Rs. {element.salary} per Month</p>
-                            <p>{element.location}</p>
-                            {(localStorage.getItem('Currentrole') === '2' || localStorage.getItem('Currentrole') === null) ? (applied_ids.find((ele) => { return ele === element._id }) ? <button onClick={this.applied} className="applied_button" type="button">Applied</button> : <button id={element._id} onClick={(e) => this.apply(element, e)} className="button2" type="button">Apply</button>) : <button id={element._id} onClick={(e) => this.handleClick(element, e)} className="button2" type="button">Edit</button>}
+            return (
+                job_data.map((element, index) => {
+                    return (<div key={index} className="row">
+                        <div className="column">
+                            <div className="card">
+                                <img src={logo} alt="image12"></img>
+                                <h3>{element.job_designation}</h3>
+                                <p>{element.company_name}</p>
+                                <p>Rs. {element.salary} per Month</p>
+                                <p>{element.location}</p>
+                                {(localStorage.getItem('Currentrole') === '2' || localStorage.getItem('Currentrole') === null) ? (applied_ids.find((ele) => { return ele === element._id }) ? <button onClick={this.applied} className="applied_button" type="button">Applied</button> : <button id={element._id} onClick={(e) => this.apply(element, e)} className="button2" type="button">Apply</button>) : <button id={element._id} onClick={(e) => this.handleClick(element, e)} className="button2" type="button">Edit</button>}
+                            </div>
                         </div>
-                    </div>
-                </div>);
-            });
+                    </div>);
+                })
+            );
         }
         else {
             return (<div>

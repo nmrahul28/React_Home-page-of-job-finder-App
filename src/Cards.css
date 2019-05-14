@@ -50,4 +50,14 @@
 select:focus {
     min-width: 150px;
     width: auto;
-}    
+}
+.page_buttons{
+  position: absolute;
+  top: 1500px;
+  left: 45%;
+}
+.main_div{
+  position: relative;
+  height: 1600px;
+}
+    

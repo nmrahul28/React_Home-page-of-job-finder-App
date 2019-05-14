@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../Cards.css';
 import logo from '../../src/download.png'
+import HeaderComponent from '../../src/Header_Component.js';
 export class Getapplied extends Component {
     constructor(props) {
         super(props)
@@ -64,7 +65,10 @@ export class Getapplied extends Component {
     }
     render() {
         console.log(this.state.get_jobs);
-        return this.state.get_jobs.map((element, index) => {
+        return( 
+            <div>
+                <HeaderComponent />
+           { this.state.get_jobs.map((element, index) => {
             return (<div key={index} className="row">
                 <div className="column">
                     <div className="card">
@@ -92,7 +96,8 @@ export class Getapplied extends Component {
                     </div>
                 </div>
             </div>)
-        })
+        })}
+        </div>)
     }
 }
 

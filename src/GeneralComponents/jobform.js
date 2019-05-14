@@ -92,6 +92,7 @@ class Jobform extends React.Component {
     }
     render() {
         return (
+            <div class="form-style-10">
             <div className='form_style'>
                 <form onSubmit={this.handleSubmit}>
                     <h1>Add a job</h1>
@@ -108,7 +109,7 @@ class Jobform extends React.Component {
                     <Button input_className={"button2"} btn_type={'submit'} btn_name={'Submit'}></Button>&ensp;&ensp;
                 </form>
             </div>
-        )
+            </div>)
     }
 
 }

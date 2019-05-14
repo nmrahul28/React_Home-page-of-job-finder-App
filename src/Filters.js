@@ -15,14 +15,18 @@ class Filter extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const job_data = this.props.data_filter;
+        var job_data = this.props.data_filter;
+        console.log(job_data);
+        var data=[];
         if (this.state.location==='' && this.state.designation==='' && this.state.company==='') {
-            var data=(job_data.map((element)=>{
+             data=job_data.map((element)=>{
                 return element;
-            }));
+            });
+            // data=data.reverse()
+            console.log(data);
         }
         else {
-            data=(job_data.filter((element) => {
+             data=job_data.filter((element) => {
                 if(this.state.location && element.location!==this.state.location){
                     console.log(element);
                     return false;
@@ -41,8 +45,10 @@ class Filter extends React.Component {
 
                 }
                 
-            }));
+            });
+            // data=data.reverse();
         }
+        console.log(data);
         this.props.filtered(data);
     }
     render() {

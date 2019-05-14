@@ -22,14 +22,16 @@ export const get_details = (data) => {
     }
 }
 
-export const getjob_user = (company) => {
+export const getjob_user = (current_page, company) => {
     var url;
+    console.log(company);
     if (company) {
-        url = 'http://localhost:8081/jobs'
+        url = `http://localhost:8081/jobs/${company}`+`/`+`${current_page}`
         return dispatch => {
-            axios.get(url, { params: { company_name: company } }).then((res) => {
-                console.log(res.data);
-                dispatch(getDataSuccess(res.data));
+            axios.get(url).then((res) => {
+                console.log(res.data.message);
+                localStorage.setItem('total_page', res.data.page)
+                dispatch(getDataSuccess(res.data.message));
             }).catch((err) => {
                 return err;
             })
@@ -37,11 +39,12 @@ export const getjob_user = (company) => {
         }
     }
     else {
-        url = 'http://localhost:8081/jobs/read'
+        url = `http://localhost:8081/jobs/read/${current_page}`
         return dispatch => {
             axios.get(url).then((res) => {
-                console.log(res.data);
-                dispatch(getDataSuccess(res.data));
+                console.log(res.data.message);
+                localStorage.setItem('total_page', res.data.page)
+                dispatch(getDataSuccess(res.data.message));
             }).catch((err) => {
                 return err;
             })
