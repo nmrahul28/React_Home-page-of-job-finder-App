@@ -23,7 +23,7 @@ class Home extends React.Component {
   }
   componentWillMount() {
     if (localStorage.getItem('Currentrole') === '2' || localStorage.getItem('Currentrole') === null) {
-      this.props.getjob_user();
+      this.props.getjob_user(1);
       this.setState({
         new_data: this.props.jobs,
         all_data: this.props.jobs
@@ -56,7 +56,12 @@ class Home extends React.Component {
       var company_name = localStorage.getItem('Currentuser');
       company_name = company_name.replace(/"/g, "");
     }
-    this.props.getjob_user(current_page, company_name);
+    if(localStorage.getItem('Currentrole') === '2'){
+      this.props.getjob_user(current_page);
+    }
+    else{
+      this.props.getjob_user(current_page, company_name);
+    }
     this.setState({
       new_data: this.props.jobs,
       all_data: this.props.jobs
