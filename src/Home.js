@@ -36,13 +36,12 @@ class Home extends React.Component {
         var company_name = localStorage.getItem('Currentuser');
         company_name = company_name.replace(/"/g, "");
       }
-      this.props.getjob_user(1,company_name);
+      this.props.getjob_user(1, company_name);
       this.setState({
         new_data: this.props.jobs,
         all_data: this.props.jobs
       })
     }
-
   }
 
   filtered_data = (data) => {
@@ -52,14 +51,15 @@ class Home extends React.Component {
   }
   button_page = (e, id) => {
     var current_page = id;
+    localStorage.setItem('current_page', id);
     if (localStorage.getItem('Currentuser')) {
       var company_name = localStorage.getItem('Currentuser');
       company_name = company_name.replace(/"/g, "");
     }
-    if(localStorage.getItem('Currentrole') === '2'){
+    if (localStorage.getItem('Currentrole') === '2') {
       this.props.getjob_user(current_page);
     }
-    else{
+    else {
       this.props.getjob_user(current_page, company_name);
     }
     this.setState({
@@ -73,8 +73,6 @@ class Home extends React.Component {
     for (let i = 1; i <= total_pages; i++) {
       total_array[i] = i;
     }
-    console.log(this.state.all_data.reverse());
-    console.log(this.state.new_data.reverse())
     return (
       <div>
         <HeaderComponent />
@@ -83,7 +81,7 @@ class Home extends React.Component {
           <Card content={this.state.new_data}></Card>
           <div className="page_buttons">
             {total_array.map((ele, i) => {
-              return <button key={i} className="button2" style={{marginLeft:'15px'}} type="button" id={ele} onClick={(e) => this.button_page(e, ele)}>{ele}</button>
+              return <button key={i} className="button2" style={{ marginLeft: '15px' }} type="button" id={ele} onClick={(e) => this.button_page(e, ele)}>{ele}</button>
             })}
           </div>
         </div>

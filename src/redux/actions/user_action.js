@@ -15,7 +15,6 @@ export const postDataSignup =(data) => {
 }
 
 export const getlogin = (email, pass) => {
-
     return dispatch => {
         axios.post('http://localhost:8081/user/readone',{
             email:email,

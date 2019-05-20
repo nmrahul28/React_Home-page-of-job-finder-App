@@ -3,7 +3,6 @@ import Input from './Input.js'
 import './signup.css';
 import Button from './Button.js';
 import FormErrors from './formerrors.js';
-import axios from 'axios';
 class Signup extends React.Component {
   constructor(props) {
     super(props)

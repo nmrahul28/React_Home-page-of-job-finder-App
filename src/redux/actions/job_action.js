@@ -69,7 +69,7 @@ export const addjob = (data) => {
                         resolve();
                     })
                     pr.then(() => {
-                        dispatch(getjob_user(data.company_name));
+                        dispatch(getjob_user(1,data.company_name));
                     })
                 }
             }).catch((err) => {
@@ -92,7 +92,7 @@ export const update_form = (data, company_name) => {
                         resolve();
                     })
                     pr.then(() => {
-                        dispatch(getjob_user(company_name));
+                        dispatch(getjob_user(1,company_name));
                     })
                 }
             }).catch((err) => {

@@ -53,30 +53,29 @@ class Login extends React.Component {
     }
     validateForm() {
         this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
-        const { login_email, login_password } = this.state;
-        this.props.getlogin(login_email, login_password);
     }
     componentWillReceiveProps(nextProps) {
         this.setState({
             user_data: nextProps.user
         }, () => {
-            console.log(this.state.user_data);
+            if (!Object.keys(this.state.user_data).length) {
+                alert('Login fail \n 1.Make sure you credentials are correct \n 2.make sure you have an account')
+            }
+            else {
+                alert('Login Success');
+                localStorage.setItem('Currentuser', JSON.stringify(this.state.user_data.name));
+                localStorage.setItem('Currentrole', JSON.stringify(this.state.user_data.role));
+                localStorage.setItem('Currentid', JSON.stringify(this.state.user_data._id));
+                localStorage.setItem('isloggedIn', true);
+                this.props.history.push({ pathname: '/' });
+            }
         })
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.user_data);
-        if (!Object.keys(this.state.user_data).length) {
-            alert('Login fail \n 1.Make sure you credentials are correct \n 2.make sure you have an account')
-        }
-        else {
-            alert('Login Success');
-            localStorage.setItem('Currentuser', JSON.stringify(this.state.user_data.name));
-            localStorage.setItem('Currentrole', JSON.stringify(this.state.user_data.role));
-            localStorage.setItem('Currentid', JSON.stringify(this.state.user_data._id));
-            localStorage.setItem('isloggedIn', true);
-            this.props.history.push({ pathname: '/' });
-        }
+        const { login_email, login_password } = this.state;
+        this.props.getlogin(login_email, login_password);
+        console.log(this.state.user_data); 
     }
     render() {
         return (

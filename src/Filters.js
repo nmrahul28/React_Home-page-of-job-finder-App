@@ -22,7 +22,6 @@ class Filter extends React.Component {
              data=job_data.map((element)=>{
                 return element;
             });
-            // data=data.reverse()
             console.log(data);
         }
         else {
@@ -46,7 +45,6 @@ class Filter extends React.Component {
                 }
                 
             });
-            // data=data.reverse();
         }
         console.log(data);
         this.props.filtered(data);
