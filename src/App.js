@@ -5,6 +5,7 @@ import {home} from './redux/containers/job_container.js';
 import Jobform from './redux/containers/add_job_container.js';
 import {getapplied} from './redux/containers/apply_container.js';
 import {showapplied} from './redux/containers/apply_container.js';
+import ChatApp from './ChatApp.js';
 import Updateform from './redux/containers/updateform_container.js';
 import { BrowserRouter, Route} from "react-router-dom";
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
       <Route path='/update/:job' component={Updateform} />
       <Route path='/show_jobs' component={getapplied} />
       <Route path ='/show_applied' component={showapplied} />
+      <Route path='/chat_app/:msg' component={ChatApp} />
     </BrowserRouter>
     );
   }

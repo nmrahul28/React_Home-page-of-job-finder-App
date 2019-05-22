@@ -63,6 +63,12 @@ export class Getapplied extends Component {
             get_jobs: this.props.apply.data
         });
     }
+    company_chat=(e,ele)=>{
+        console.log(ele);
+        localStorage.setItem('get_job_id', ele.job_id);
+        localStorage.setItem('get_user_id', ele.user_id);
+        this.props.history.push(`chat_app/${JSON.stringify(ele)}`);
+    }
     render() {
         console.log(this.state.get_jobs);
         return( 
@@ -93,6 +99,7 @@ export class Getapplied extends Component {
                             <input className="button2" type="submit" value="Submit" />
                         </form>) : null}
                         {(!this.state.flag || (this.state.obj_id !== element._id)) && <button className="button2" id={element._id} onClick={(e) => this.edit(e, element)}>Edit Status</button>}
+                        <button type="submit" className="button2" onClick={(e)=>{this.company_chat(e,element)}}>Chat</button>
                     </div>
                 </div>
             </div>)

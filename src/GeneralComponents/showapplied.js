@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../Cards.css';
 import logo from '../../src/download.png'
 import HeaderComponent from '../../src/Header_Component.js';
+import ChatApp from '../ChatApp.js';
 export class Showapplied extends Component {
     componentWillMount() {
         if (localStorage.getItem('Currentid')) {
@@ -11,7 +12,8 @@ export class Showapplied extends Component {
             this.props.apply.data;
         }
         this.setState({
-            check_applied: this.props.apply.data
+            check_applied: this.props.apply.data,
+            flag:false
         });
     }
 
@@ -19,14 +21,20 @@ export class Showapplied extends Component {
         console.log('hello', nextProps);
         this.setState({
             check_applied: nextProps.apply.data,
+            flag:false
         });
+    }
+    chat_app=(e, ele)=>{
+        console.log(ele);
+        localStorage.setItem('ele_id',ele.job_id);
+        this.props.history.push(`/chat_app/${JSON.stringify(ele)}`);
     }
     render() {
         console.log(this.state.check_applied);
         return (
             <div>
                 <HeaderComponent />
-            {this.state.check_applied.map((element, index) => {
+            {!this.state.flag && this.state.check_applied.map((element, index) => {
             return (<div key={index} className="row">
                 <div className="column">
                     <div className="card">
@@ -39,10 +47,12 @@ export class Showapplied extends Component {
                         {(element.job_status === 1) ? <b><p style={{ 'color': 'red' }}>Status: Rejected</p></b> : null}
                         {(element.job_status === 2) ? <b><p style={{ 'color': 'orange' }}>Status: Shortlisted</p></b> : null}
                         {(element.job_status === 3) ? <b><p style={{ 'color': 'green' }}>Status: Selected</p></b> : null}
+                        <button type="submit" className="button2" onClick={(e)=>this.chat_app(e,element)}>Chat</button>
                     </div>
                 </div>
             </div>)
         })}
+        {this.state.flag && <ChatApp data={this.state.new_obj} />}
         </div>)
     }
 }
