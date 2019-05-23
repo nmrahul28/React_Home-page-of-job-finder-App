@@ -6,7 +6,7 @@ import React from 'react';
 class Message extends React.Component {
   render() {
     // Display the message text and sender's name
-    const fromMe = this.props.fromMe ? 'from-me' : '';
+    const fromMe = (this.props.fromMe===JSON.parse(localStorage.getItem('Currentuser'))) ? 'from-me' : '';
     return (
       <div className={`message ${fromMe}`}>
         <div className='username'>

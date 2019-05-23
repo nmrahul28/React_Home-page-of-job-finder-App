@@ -27,15 +27,25 @@ class ChatApp extends React.Component {
       this.addMessage(message);
     });
   }
-  componentDidMount(){
+  componentWillMount(){
     if(new_data_obj['user_name']===JSON.parse(localStorage.getItem('Currentuser'))){
       console.log(new_data_obj.user_id, new_data_obj.job_id);
       axios.get(`http://localhost:8081/message/${new_data_obj.user_id}`+`/`+`${new_data_obj.job_id}`)
       .then((respo)=>{
-        console.log(respo.data);
-        this.setState({
-          messages:respo.data
-        })
+        console.log(respo.data.messages);
+        console.log(new_data_obj.user_id);
+        console.log(new_data_obj.job_id);
+        if(respo.data.messages){
+          this.setState({
+            messages:respo.data.messages
+          },()=>{console.log(this.state.messages)})
+        }
+        else{
+          this.setState({
+            messages:[]
+          },()=>{console.log(this.state.messages)})
+        }
+
       }).catch((err)=>{
         console.log(err);
       })
@@ -45,9 +55,16 @@ class ChatApp extends React.Component {
       axios.get(`http://localhost:8081/message/${new_data_obj.job_id}`+`/`+`${new_data_obj.user_id}`)
       .then((respo)=>{
         console.log(respo.data);
-        this.setState({
-          messages:respo.data
-        })
+        if(respo.data.messages){
+          this.setState({
+            messages:respo.data.messages
+          },()=>{console.log(this.state.messages)})
+        }
+        else{
+          this.setState({
+            messages:[]
+          },()=>{console.log(this.state.messages)})
+        }
       }).catch((err)=>{
         console.log(err);
       })
@@ -69,6 +86,7 @@ class ChatApp extends React.Component {
         sendToID: new_data_obj['job_id'],
         message
       };
+      console.log(messageObject);
     }
     else{
       messageObject = {
@@ -79,18 +97,19 @@ class ChatApp extends React.Component {
       };
 
     }
-
-
     // Emit the message to the server
     this.socket.emit('client:message', messageObject);
-    messageObject.fromMe = true;
+    // messageObject.fromMe = true;
     this.addMessage(messageObject);
   }
 
   addMessage(message) {
     // Append the message to the component state
+    console.log(message);
     const messages = this.state.messages;
+    console.log(messages);
     messages.push(message);
+    console.log(messages);
     this.setState({ messages });
   }
 
